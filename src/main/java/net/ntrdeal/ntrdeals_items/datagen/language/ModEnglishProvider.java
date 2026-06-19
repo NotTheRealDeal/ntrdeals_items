@@ -8,7 +8,6 @@ import net.ntrdeal.ntrdeals_items.entity.ModAttributes;
 import net.ntrdeal.ntrdeals_items.item.ModCreativeTabs;
 import net.ntrdeal.ntrdeals_items.item.ModItems;
 import net.ntrdeal.ntrdeals_items.tags.ModItemTags;
-import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -18,7 +17,7 @@ public class ModEnglishProvider extends FabricLanguageProvider {
     }
 
     @Override
-    public void generateTranslations(HolderLookup.@NonNull Provider lookup, @NonNull TranslationBuilder builder) {
+    public void generateTranslations(HolderLookup.Provider lookup, TranslationBuilder builder) {
         builder.add(ModItems.RAW_LUNARITE, "Raw Lunarite");
         builder.add(ModItems.RAW_COSMOLITE, "Raw Cosmolite");
 
@@ -37,7 +36,7 @@ public class ModEnglishProvider extends FabricLanguageProvider {
 
         builder.add(ModItems.TRIM_SWAPPER, "Trim Swapper");
 
-        builder.add(ModBlocks.LUNARITE_ORE.asItem(), "Lunarite Ore");
+        builder.add(ModBlocks.LUNARITE_ORE, "Lunarite Ore");
         builder.add(ModBlocks.COSMOLITE_ORE.asItem(), "Cosmolite Ore");
         builder.add(ModBlocks.RAW_LUNARITE_BLOCK.asItem(), "Block of Raw Lunarite");
         builder.add(ModBlocks.RAW_COSMOLITE_BLOCK.asItem(), "Block of Raw Cosmolite");
@@ -52,8 +51,9 @@ public class ModEnglishProvider extends FabricLanguageProvider {
         builder.add(ModItemTags.COSMOLITE_ARMOR, "Cosmolite Armor");
         builder.add(ModItemTags.REPAIRS_LUNARITE_ARMOR, "Repairs Lunarite Armor");
         builder.add(ModItemTags.REPAIRS_COSMOLITE_ARMOR, "Repairs Cosmolite Armor");
+        builder.add(ModItemTags.COSMOLITE, "Cosmolite");
 
-        builder.add(ModCreativeTabs.NTRDEALS_ITEMS_TAB.getDisplayName().getString(), "NTRDeal's Items");
+        builder.add(ModCreativeTabs.NTRDEALS_ITEMS.getDisplayName().getString(), "NTRDeal's Items");
 
         builder.add("tooltip.ntrdeals_items.error.incomplete", "§cIncomplete trim!");
         builder.add("advancements.adventure.ntrdeals_items.extremely_dedicated.title", "Extreme Dedication");

@@ -43,15 +43,4 @@ public class ModModelProvider extends FabricModelProvider {
         generator.generateTrimmableItem(ModItems.COSMOLITE_LEGGINGS, ModEquipmentAssets.COSMOLITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
         generator.generateTrimmableItem(ModItems.COSMOLITE_BOOTS, ModEquipmentAssets.COSMOLITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
     }
-
-//    public final void generateBundleLikeModel(Item bundle, ItemModelGenerators generator) {
-//        ItemModel.Unbaked closedModel = ItemModelUtils.plainModel(generator.createFlatItemModel(Items.BUNDLE, ModelTemplates.FLAT_ITEM));
-//        Identifier openBackCover = generator.generateBundleCoverModel(Items.BUNDLE, ModelTemplates.BUNDLE_OPEN_BACK_INVENTORY, "_open_back");
-//        Identifier openFrontCover = generator.generateBundleCoverModel(Items.BUNDLE, ModelTemplates.BUNDLE_OPEN_FRONT_INVENTORY, "_open_front");
-//        ItemModel.Unbaked openModel = ItemModelUtils.composite(
-//                ItemModelUtils.plainModel(openBackCover), new BundleLikeSpecialRenderer.Unbaked(), ItemModelUtils.plainModel(openFrontCover)
-//        );
-//        ItemModel.Unbaked inGuiModel = ItemModelUtils.conditional(new BundleLikeHasIndexed(), openModel, closedModel);
-//        generator.itemModelOutput.accept(bundle, ItemModelUtils.select(new DisplayContext(), closedModel, ItemModelUtils.when(ItemDisplayContext.GUI, inGuiModel)));
-//    }
 }

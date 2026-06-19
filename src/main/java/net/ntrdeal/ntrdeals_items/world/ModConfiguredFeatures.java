@@ -32,8 +32,8 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.END_STONE_BRICKS),
                         BlockStateProvider.simple(Blocks.PURPUR_BLOCK),
                         List.of(ModBlocks.DRIED_CHORUS_FLOWER.defaultBlockState()),
-                        BlockTags.FEATURES_CANNOT_REPLACE,
-                        BlockTags.GEODE_INVALID_BLOCKS
+                        context.lookup(Registries.BLOCK).getOrThrow(BlockTags.FEATURES_CANNOT_REPLACE),
+                        context.lookup(Registries.BLOCK).getOrThrow(BlockTags.GEODE_INVALID_BLOCKS)
                 ),
                 new GeodeLayerSettings(1.7d, 2.2d, 3.2d, 4.2d),
                 new GeodeCrackSettings(0.95d, 2.0d, 2),
@@ -57,8 +57,8 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.MAGMA_BLOCK),
                         BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
                         List.of(Blocks.LAVA.defaultBlockState()),
-                        BlockTags.FEATURES_CANNOT_REPLACE,
-                        BlockTags.GEODE_INVALID_BLOCKS
+                        context.lookup(Registries.BLOCK).getOrThrow(BlockTags.FEATURES_CANNOT_REPLACE),
+                        context.lookup(Registries.BLOCK).getOrThrow(BlockTags.GEODE_INVALID_BLOCKS)
                 ),
                 new GeodeLayerSettings(1.7d, 2.2d, 3.2d, 4.2d),
                 new GeodeCrackSettings(0d, 2.0d, 2),

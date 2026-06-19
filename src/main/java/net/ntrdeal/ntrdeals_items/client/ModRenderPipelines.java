@@ -15,7 +15,7 @@ public interface ModRenderPipelines {
     RenderPipeline COSMOLITE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.END_PORTAL_SNIPPET)
             .withDepthStencilState(new DepthStencilState(CompareOp.EQUAL, false))
             .withColorTargetState(new ColorTargetState(BlendFunction.LIGHTNING))
-            .withLocation(NTRDealsItems.id("cosmolite"))
+            .withLocation(NTRDealsItems.id("pipline/cosmolite"))
             .withShaderDefine("PORTAL_LAYERS", 15)
             .withCull(false)
             .build()

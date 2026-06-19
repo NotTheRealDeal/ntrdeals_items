@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "group": "lunarite_ingot",
   "ingredients": [
     "ntrdeals_items:lunarite_block"

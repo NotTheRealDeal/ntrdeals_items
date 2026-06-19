@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
-import net.ntrdeal.ntrdeals_items.block.ModBlocks;
+import net.ntrdeal.ntrdeals_items.reference.ModBlockItemIds;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,32 +15,28 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        this.valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                ModBlocks.LUNARITE_ORE,
-                ModBlocks.COSMOLITE_ORE,
-                ModBlocks.RAW_LUNARITE_BLOCK,
-                ModBlocks.RAW_COSMOLITE_BLOCK,
-                ModBlocks.LUNARITE_BLOCK,
-                ModBlocks.COSMOLITE_BLOCK,
-                ModBlocks.DRIED_CHORUS_FLOWER
-        );
+        this.builder(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(ModBlockItemIds.LUNARITE_ORE)
+                .add(ModBlockItemIds.COSMOLITE_ORE)
+                .add(ModBlockItemIds.RAW_LUNARITE_BLOCK)
+                .add(ModBlockItemIds.RAW_COSMOLITE_BLOCK)
+                .add(ModBlockItemIds.LUNARITE_BLOCK)
+                .add(ModBlockItemIds.COSMOLITE_BLOCK)
+                .add(ModBlockItemIds.DRIED_CHORUS_FLOWER);
 
-        this.valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL).add(
-                ModBlocks.LUNARITE_ORE,
-                ModBlocks.RAW_LUNARITE_BLOCK,
-                ModBlocks.LUNARITE_BLOCK
-        );
+        this.builder(BlockTags.NEEDS_IRON_TOOL)
+                .add(ModBlockItemIds.LUNARITE_ORE)
+                .add(ModBlockItemIds.RAW_LUNARITE_BLOCK)
+                .add(ModBlockItemIds.LUNARITE_BLOCK);
 
-        this.valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(
-                ModBlocks.COSMOLITE_ORE,
-                ModBlocks.RAW_COSMOLITE_BLOCK,
-                ModBlocks.COSMOLITE_BLOCK
-        );
+        this.builder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlockItemIds.COSMOLITE_ORE)
+                .add(ModBlockItemIds.RAW_COSMOLITE_BLOCK)
+                .add(ModBlockItemIds.COSMOLITE_BLOCK);
 
-        this.valueLookupBuilder(BlockTags.INCORRECT_FOR_DIAMOND_TOOL).add(
-                ModBlocks.COSMOLITE_ORE,
-                ModBlocks.RAW_COSMOLITE_BLOCK,
-                ModBlocks.COSMOLITE_BLOCK
-        );
+        this.builder(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+                .add(ModBlockItemIds.COSMOLITE_ORE)
+                .add(ModBlockItemIds.RAW_COSMOLITE_BLOCK)
+                .add(ModBlockItemIds.COSMOLITE_BLOCK);
     }
 }

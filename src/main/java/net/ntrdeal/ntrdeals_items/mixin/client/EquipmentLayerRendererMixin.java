@@ -15,23 +15,24 @@ import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.trim.ArmorTrim;
 import net.ntrdeal.ntrdeals_items.client.ModRenderTypes;
 import net.ntrdeal.ntrdeals_items.item.equipment.ModEquipmentAssets;
+import net.ntrdeal.realapi.data.mixin.RealMixin;
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(EquipmentLayerRenderer.class)
-public class EquipmentLayerRendererMixin {
+public class EquipmentLayerRendererMixin implements RealMixin<EquipmentLayerRenderer> {
     @WrapOperation(method = "renderLayers(Lnet/minecraft/client/resources/model/EquipmentClientInfo$LayerType;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/client/model/Model;Ljava/lang/Object;Lnet/minecraft/world/item/ItemStack;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;ILnet/minecraft/resources/Identifier;II)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/OrderedSubmitNodeCollector;submitModel(Lnet/minecraft/client/model/Model;Ljava/lang/Object;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/rendertype/RenderType;IIILnet/minecraft/client/renderer/texture/TextureAtlasSprite;ILnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V", ordinal = 0))
-    private <S> void ntrdeal$renderCosmolite(OrderedSubmitNodeCollector collector, Model<? super S> model, S state, PoseStack poseStack, RenderType type, int light, int overlay, int color, @Nullable TextureAtlasSprite sprite, int outlineColor, ModelFeatureRenderer.@Nullable CrumblingOverlay crumbling, Operation<Void> original, @Local(argsOnly = true) ResourceKey<EquipmentAsset> asset) {
+    private <S> void ntrdeal$renderCosmolite(OrderedSubmitNodeCollector collector, Model<? super S> model, S state, PoseStack poseStack, RenderType type, int light, int overlay, int color, @Nullable TextureAtlasSprite sprite, int outlineColor, ModelFeatureRenderer.@Nullable CrumblingOverlay crumbling, Operation<Void> original, @Local(argsOnly = true, name = "equipmentAssetId") ResourceKey<EquipmentAsset> equipmentAssetId) {
         original.call(collector, model, state, poseStack, type, light, overlay, color, sprite, outlineColor, crumbling);
-        if (asset.equals(ModEquipmentAssets.COSMOLITE)) original.call(collector, model, state, poseStack, ModRenderTypes.COSMOLITE, light, overlay, color, sprite, outlineColor, crumbling);
+        if (equipmentAssetId.equals(ModEquipmentAssets.COSMOLITE)) original.call(collector, model, state, poseStack, ModRenderTypes.COSMOLITE, light, overlay, color, sprite, outlineColor, crumbling);
     }
 
     @WrapOperation(method = "renderLayers(Lnet/minecraft/client/resources/model/EquipmentClientInfo$LayerType;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/client/model/Model;Ljava/lang/Object;Lnet/minecraft/world/item/ItemStack;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;ILnet/minecraft/resources/Identifier;II)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/OrderedSubmitNodeCollector;submitModel(Lnet/minecraft/client/model/Model;Ljava/lang/Object;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/rendertype/RenderType;IIILnet/minecraft/client/renderer/texture/TextureAtlasSprite;ILnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V", ordinal = 2))
-    private <S> void  ntrdeal$bigBrainTime(OrderedSubmitNodeCollector collector, Model<? super S> model, S state, PoseStack poseStack, RenderType type, int light, int overlay, int color, @Nullable TextureAtlasSprite sprite, int outlineColor, ModelFeatureRenderer.@Nullable CrumblingOverlay crumbling, Operation<Void> original, @Local(argsOnly = true) ResourceKey<EquipmentAsset> asset, @Local(name = "trim") ArmorTrim trim) {
-        if (asset.equals(ModEquipmentAssets.COSMOLITE)) original.call(collector, model, state, poseStack, ModRenderTypes.armorTrimsSheet(trim.pattern().value().decal()), light, overlay, color, sprite, outlineColor, crumbling);
+    private <S> void  ntrdeal$bigBrainTime(OrderedSubmitNodeCollector collector, Model<? super S> model, S state, PoseStack poseStack, RenderType type, int light, int overlay, int color, @Nullable TextureAtlasSprite sprite, int outlineColor, ModelFeatureRenderer.@Nullable CrumblingOverlay crumbling, Operation<Void> original, @Local(argsOnly = true, name = "equipmentAssetId") ResourceKey<EquipmentAsset> equipmentAssetId, @Local(name = "trim") ArmorTrim trim) {
+        if (equipmentAssetId.equals(ModEquipmentAssets.COSMOLITE)) original.call(collector, model, state, poseStack, ModRenderTypes.armorTrimsSheet(trim.pattern().value().decal()), light, overlay, color, sprite, outlineColor, crumbling);
         else original.call(collector, model, state, poseStack, type, light, overlay, color, sprite, outlineColor, crumbling);
     }
 }

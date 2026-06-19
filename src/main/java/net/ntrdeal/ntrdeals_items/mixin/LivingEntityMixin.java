@@ -13,6 +13,7 @@ import net.minecraft.world.waypoints.WaypointTransmitter;
 import net.ntrdeal.ntrdeals_items.entity.ModAttributes;
 import net.ntrdeal.ntrdeals_items.item.component.InfuseAttributes;
 import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
+import net.ntrdeal.realapi.data.mixin.RealMixin;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.function.BiConsumer;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements Attackable, WaypointTransmitter {
+public abstract class LivingEntityMixin extends Entity implements Attackable, WaypointTransmitter, RealMixin<LivingEntity> {
     @Shadow @Final private AttributeMap attributes;
     @Shadow public abstract double getAttributeValue(Holder<Attribute> attribute);
 
@@ -58,10 +59,10 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, Wa
     }
 
     @Inject(method = "stopLocationBasedEffects", at = @At("TAIL"))
-    private void ntrdeal$removeAttributes(ItemStack previous, EquipmentSlot slot, AttributeMap attributeMap, CallbackInfo ci) {
+    private void ntrdeal$removeAttributes(ItemStack previous, EquipmentSlot inSlot, AttributeMap attributes, CallbackInfo ci) {
         if (previous.get(ModDataComponents.INFUSE_ATTRIBUTES) instanceof InfuseAttributes(ItemAttributeModifiers attributeModifiers)) {
-            attributeModifiers.forEach(slot, (attribute, modifier) -> {
-                if (attributeMap.getInstance(attribute) instanceof AttributeInstance instance) {
+            attributeModifiers.forEach(inSlot, (attribute, modifier) -> {
+                if (attributes.getInstance(attribute) instanceof AttributeInstance instance) {
                     instance.removeModifier(modifier);
                 }
             });

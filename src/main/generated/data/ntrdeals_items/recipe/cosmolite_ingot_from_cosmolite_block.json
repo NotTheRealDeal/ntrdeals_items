@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "group": "cosmolite_ingot",
   "ingredients": [
     "ntrdeals_items:cosmolite_block"

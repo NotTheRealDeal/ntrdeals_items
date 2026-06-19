@@ -14,7 +14,8 @@ public interface ModRenderTypes {
             .withTexture("Sampler0", AbstractEndPortalRenderer.END_SKY_LOCATION)
             .withTexture("Sampler1", AbstractEndPortalRenderer.END_PORTAL_LOCATION)
             .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
-            .createRenderSetup());
+            .createRenderSetup()
+    );
 
     RenderType TRANSPARENT_TRIMS_DECAL = RenderType.create("transparent_trims_decal", RenderSetup.builder(ModRenderPipelines.TRANSPARENT_TRIMS_DECAL)
             .withTexture("Sampler0", Sheets.ARMOR_TRIMS_SHEET)

@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.equipment.Equippable;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
-import net.ntrdeal.ntrdeals_items.util.Functions;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Map;
@@ -19,7 +18,7 @@ import java.util.Map;
 public record InfusionEntry(Map<Holder<Attribute>, InfusionData> attributes) {
     @Nullable
     public ItemAttributeModifiers getAttributes(ItemStack stack) {
-        if (stack.get(DataComponents.EQUIPPABLE) instanceof Equippable equippable && Functions.isInfusible(stack) instanceof InfusibleEntry entry) {
+        if (stack.get(DataComponents.EQUIPPABLE) instanceof Equippable equippable && InfusibleConfig.isInfusible(stack) instanceof InfusibleEntry entry) {
             ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 
             this.attributes.forEach((attribute, data) -> builder.add(

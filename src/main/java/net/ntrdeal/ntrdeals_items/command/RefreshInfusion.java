@@ -17,7 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ItemStack;
-import net.ntrdeal.ntrdeals_items.util.Functions;
+import net.ntrdeal.ntrdeals_items.config.InfusionConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class RefreshInfusion {
             });
         }
 
-        List<ItemStack> stacks = unfilteredStacks.stream().filter(Functions::refreshInfusion).toList();
+        List<ItemStack> stacks = unfilteredStacks.stream().filter(InfusionConfig::refreshInfusion).toList();
 
         if (!stacks.isEmpty()) {
             context.getSource().sendSuccess(() -> Component.literal("Successfully refresh %s!".formatted(stacks)).withStyle(ChatFormatting.GREEN), false);

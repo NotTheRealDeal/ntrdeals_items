@@ -5,13 +5,14 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 
-public interface ModItemTags {
-    TagKey<Item> COSMOLITE_ARMOR = bind("cosmolite_armor");
-    TagKey<Item> LUNARITE_ARMOR = bind("lunarite_armor");
-    TagKey<Item> REPAIRS_LUNARITE_ARMOR = bind("repairs_lunarite_armor");
-    TagKey<Item> REPAIRS_COSMOLITE_ARMOR = bind("repairs_cosmolite_armor");
+public final class ModItemTags {
+    public static final TagKey<Item> COSMOLITE_ARMOR = bind("cosmolite_armor");
+    public static final TagKey<Item> LUNARITE_ARMOR = bind("lunarite_armor");
+    public static final TagKey<Item> REPAIRS_LUNARITE_ARMOR = bind("repairs_lunarite_armor");
+    public static final TagKey<Item> REPAIRS_COSMOLITE_ARMOR = bind("repairs_cosmolite_armor");
+    public static final TagKey<Item> COSMOLITE = bind("cosmolite");
 
-    static TagKey<Item> bind(final String name) {
+    private static TagKey<Item> bind(final String name) {
         return TagKey.create(Registries.ITEM, NTRDealsItems.id(name));
     }
 }

@@ -7,6 +7,8 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
 import org.jspecify.annotations.Nullable;
 
 import java.io.InputStreamReader;
@@ -57,5 +59,16 @@ public class InfusibleConfig implements ResourceManagerReloadListener {
         if (entry != null) return entry;
         lazyInitialize();
         return ENTRIES.get(item);
+    }
+
+    @Nullable
+    public static InfusibleEntry isInfusible(ItemStack stack) {
+        if (stack.get(ModDataComponents.INFUSIBLE) instanceof InfusibleEntry entry) {
+            return entry;
+        } else if (InfusibleConfig.getEntry(stack.getItem()) instanceof InfusibleEntry entry) {
+            return entry;
+        } else {
+            return null;
+        }
     }
 }

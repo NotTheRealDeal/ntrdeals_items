@@ -9,10 +9,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.ntrdeal.ntrdeals_items.config.InfusibleConfig;
+import net.ntrdeal.ntrdeals_items.config.InfusionConfig;
 import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
 import net.ntrdeal.ntrdeals_items.item.component.TrimData;
 import net.ntrdeal.ntrdeals_items.item.component.TrimSwapperComponent;
-import net.ntrdeal.ntrdeals_items.util.Functions;
 
 import java.util.Map;
 
@@ -28,10 +29,10 @@ public class TrimSwapperItem extends Item {
 
         slotMap.forEach((slot, data) -> {
             ItemStack stack = player.getItemBySlot(slot);
-            if (data.isComplete() && (stack.is(ItemTags.TRIMMABLE_ARMOR) || Functions.isInfusible(stack) != null)) {
+            if (data.isComplete() && (stack.is(ItemTags.TRIMMABLE_ARMOR) || InfusibleConfig.isInfusible(stack) != null)) {
                 slotMap.put(slot, TrimData.of(stack.get(DataComponents.TRIM)));
                 stack.set(DataComponents.TRIM, data.getTrim());
-                Functions.refreshInfusion(stack);
+                InfusionConfig.refreshInfusion(stack);
             }
         });
 

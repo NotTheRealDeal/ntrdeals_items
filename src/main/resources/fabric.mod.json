@@ -28,12 +28,13 @@
 			"net.ntrdeal.ntrdeals_items.component.ModComponents"
 		]
 	},
+	"accessWidener": "ntrdeals_items.classtweaker",
 	"mixins": [
 		"ntrdeals_items.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.4",
-		"minecraft": "~26.1",
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
 		"java": ">=25",
 		"fabric-api": "*",
 		"realapi": "*"

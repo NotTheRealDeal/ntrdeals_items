@@ -4,34 +4,20 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
-import net.ntrdeal.ntrdeals_items.config.*;
+import net.ntrdeal.ntrdeals_items.config.InfusionConfigProvider;
+import net.ntrdeal.ntrdeals_items.config.InfusionConfiguration;
+import net.ntrdeal.ntrdeals_items.config.InfusionData;
+import net.ntrdeal.ntrdeals_items.config.InfusionEntry;
 import net.ntrdeal.ntrdeals_items.entity.ModAttributes;
-import net.ntrdeal.ntrdeals_items.item.ModItems;
-import net.ntrdeal.ntrdeals_items.tags.ModItemTags;
 import net.ntrdeal.realapi.entity.RealAttributes;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class ModInfusionProvider extends InfusionConfigProvider {
     public ModInfusionProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
-    }
-
-    @Override
-    public void generateInfusibles(HolderLookup.Provider provider, BiConsumer<String, InfusibleConfiguration> consumer) {
-        consumer.accept("lunarite", new InfusibleConfiguration(
-                List.of(ModItems.LUNARITE_HELMET, ModItems.LUNARITE_CHESTPLATE, ModItems.LUNARITE_LEGGINGS, ModItems.LUNARITE_BOOTS),
-                ModItemTags.LUNARITE_ARMOR, 1d, 1d)
-        );
-
-        consumer.accept("cosmolite", new InfusibleConfiguration(
-                List.of(ModItems.COSMOLITE_HELMET, ModItems.COSMOLITE_CHESTPLATE, ModItems.COSMOLITE_LEGGINGS, ModItems.COSMOLITE_BOOTS),
-                ModItemTags.COSMOLITE_ARMOR, 1d, 1d)
-        );
     }
 
     @Override

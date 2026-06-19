@@ -27,6 +27,6 @@ public record InfusibleConfiguration(Optional<List<Item>> items, Optional<TagKey
     }
 
     public InfusibleConfiguration(List<Item> items, TagKey<Item> key, double positiveMultiplier, double negativeMultiplier) {
-        this(Optional.of(items), Optional.of(key), positiveMultiplier, negativeMultiplier);
+        this(Optional.ofNullable(items), Optional.ofNullable(key), positiveMultiplier, negativeMultiplier);
     }
 }
