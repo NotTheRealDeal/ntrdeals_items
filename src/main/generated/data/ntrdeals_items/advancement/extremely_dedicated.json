@@ -1,35 +1,12 @@
 {
-  "display": {
-    "icon": {
-      "id": "ntrdeals_items:cosmolite_chestplate",
-      "components": {
-        "minecraft:trim": {
-          "material": "minecraft:netherite",
-          "pattern": "minecraft:silence"
-        }
-      },
-      "count": 1
-    },
-    "title": {
-      "translate": "advancements.adventure.ntrdeals_items.extremely_dedicated.title"
-    },
-    "description": {
-      "translate": "advancements.adventure.ntrdeals_items.extremely_dedicated.description"
-    },
-    "frame": "challenge",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": true
-  },
   "parent": "minecraft:adventure/trim_with_any_armor_pattern",
   "criteria": {
     "netherite_silenced": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": "ntrdeals_items:cosmolite_helmet",
-            "components": {
+            "predicates": {
               "minecraft:trim": {
                 "material": "minecraft:netherite",
                 "pattern": "minecraft:silence"
@@ -38,7 +15,7 @@
           },
           {
             "items": "ntrdeals_items:cosmolite_chestplate",
-            "components": {
+            "predicates": {
               "minecraft:trim": {
                 "material": "minecraft:netherite",
                 "pattern": "minecraft:silence"
@@ -47,7 +24,7 @@
           },
           {
             "items": "ntrdeals_items:cosmolite_leggings",
-            "components": {
+            "predicates": {
               "minecraft:trim": {
                 "material": "minecraft:netherite",
                 "pattern": "minecraft:silence"
@@ -56,7 +33,7 @@
           },
           {
             "items": "ntrdeals_items:cosmolite_boots",
-            "components": {
+            "predicates": {
               "minecraft:trim": {
                 "material": "minecraft:netherite",
                 "pattern": "minecraft:silence"
@@ -64,7 +41,27 @@
             }
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.ntrdeals_items.extremely_dedicated.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "components": {
+        "minecraft:trim": {
+          "material": "minecraft:netherite",
+          "pattern": "minecraft:silence"
+        }
+      },
+      "id": "ntrdeals_items:cosmolite_chestplate"
+    },
+    "title": {
+      "translate": "advancements.adventure.ntrdeals_items.extremely_dedicated.title"
     }
   },
   "requirements": [

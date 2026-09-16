@@ -2,43 +2,52 @@ package net.ntrdeal.ntrdeals_items.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.AbstractEndPortalRenderer;
 import net.minecraft.client.renderer.rendertype.LayeringTransform;
 import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Util;
+
+import java.util.function.Function;
 
 @Environment(EnvType.CLIENT)
-public interface ModRenderTypes {
-    RenderType COSMOLITE = RenderType.create("cosmolite", RenderSetup.builder(ModRenderPipelines.COSMOLITE)
+public final class ModRenderTypes {
+    private ModRenderTypes(){}
+
+    public static final RenderType COSMOLITE = RenderType.create("cosmolite", RenderSetup.builder(ModRenderPipelines.COSMOLITE)
             .withTexture("Sampler0", AbstractEndPortalRenderer.END_SKY_LOCATION)
             .withTexture("Sampler1", AbstractEndPortalRenderer.END_PORTAL_LOCATION)
             .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
+            .withForcedSolidModelPhase()
             .createRenderSetup()
     );
 
-    RenderType TRANSPARENT_TRIMS_DECAL = RenderType.create("transparent_trims_decal", RenderSetup.builder(ModRenderPipelines.TRANSPARENT_TRIMS_DECAL)
-            .withTexture("Sampler0", Sheets.ARMOR_TRIMS_SHEET)
-            .useLightmap()
-            .useOverlay()
-            .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
-            .setOutline(RenderSetup.OutlineProperty.AFFECTS_OUTLINE)
-            .createRenderSetup()
-    );
+    private static final Function<Identifier, RenderType> ARMOR_TRIM_TRANSPARENT = Util.memoize(texture -> RenderType.create(
+            "armor_trim_transparent", RenderSetup.builder(ModRenderPipelines.ARMOR_TRIM_TRANSPARENT)
+                    .withTexture("Sampler0", texture)
+                    .useLightmap().useOverlay()
+                    .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
+                    .affectsCrumbling()
+                    .setOutline(RenderSetup.OutlineProperty.AFFECTS_OUTLINE)
+                    .withForcedSolidModelPhase()
+                    .createRenderSetup()
+    ));
 
-    RenderType TRANSPARENT_TRIMS = RenderType.create("transparent_trims", RenderSetup.builder(ModRenderPipelines.TRANSPARENT_TRIMS)
-            .withTexture("Sampler0", Sheets.ARMOR_TRIMS_SHEET)
-            .useLightmap()
-            .useOverlay()
-            .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
-            .affectsCrumbling()
-            .setOutline(RenderSetup.OutlineProperty.AFFECTS_OUTLINE)
-            .createRenderSetup()
-    );
+    private static final Function<Identifier, RenderType> ARMOR_TRIM_DECAL_TRANSPARENT = Util.memoize(texture -> RenderType.create(
+            "armor_trim_transparent", RenderSetup.builder(ModRenderPipelines.ARMOR_TRIM_DECAL_TRANSPARENT)
+                    .withTexture("Sampler0", texture)
+                    .useLightmap().useOverlay()
+                    .setLayeringTransform(LayeringTransform.VIEW_OFFSET_Z_LAYERING)
+                    .affectsCrumbling()
+                    .setOutline(RenderSetup.OutlineProperty.AFFECTS_OUTLINE)
+                    .withForcedSolidModelPhase()
+                    .createRenderSetup()
+    ));
 
-    static RenderType armorTrimsSheet(final boolean decal) {
-        return decal ? TRANSPARENT_TRIMS_DECAL : TRANSPARENT_TRIMS;
+    public static RenderType armorTrimsSheet(Identifier texture, boolean decal) {
+        return (decal ? ARMOR_TRIM_DECAL_TRANSPARENT : ARMOR_TRIM_TRANSPARENT).apply(texture);
     }
 
-    static void register() {}
+    public static void register() {}
 }

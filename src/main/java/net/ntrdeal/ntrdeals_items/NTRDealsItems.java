@@ -4,10 +4,11 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
 import net.ntrdeal.ntrdeals_items.block.ModBlocks;
 import net.ntrdeal.ntrdeals_items.command.ModCommands;
+import net.ntrdeal.ntrdeals_items.component.ModComponents;
 import net.ntrdeal.ntrdeals_items.config.ModConfig;
 import net.ntrdeal.ntrdeals_items.entity.ModAttributes;
 import net.ntrdeal.ntrdeals_items.item.ModItems;
-import net.ntrdeal.ntrdeals_items.world.gen.ModWorldGen;
+import net.ntrdeal.ntrdeals_items.world.ModWorldGen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +24,7 @@ public class NTRDealsItems implements ModInitializer {
 		ModConfig.register();
 		ModCommands.register();
 		ModWorldGen.register();
+		ModComponents.register();
 	}
 
 	public static Identifier id(String path) {

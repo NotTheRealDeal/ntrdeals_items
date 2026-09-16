@@ -1,11 +1,12 @@
-package net.ntrdeal.ntrdeals_items.world.gen;
+package net.ntrdeal.ntrdeals_items.world;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.ntrdeal.ntrdeals_items.world.ModPlacedFeatures;
 
-public class ModWorldGen {
+public final class ModWorldGen {
+    private ModWorldGen(){}
+
     public static void register() {
         BiomeModifications.addFeature(
                 BiomeSelectors.foundInOverworld(),

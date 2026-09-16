@@ -11,9 +11,8 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.waypoints.WaypointTransmitter;
 import net.ntrdeal.ntrdeals_items.entity.ModAttributes;
-import net.ntrdeal.ntrdeals_items.item.component.InfuseAttributes;
 import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
-import net.ntrdeal.realapi.data.mixin.RealMixin;
+import net.ntrdeal.ntrdeals_items.item.component.custom.InfuseAttributes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.function.BiConsumer;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements Attackable, WaypointTransmitter, RealMixin<LivingEntity> {
+public abstract class LivingEntityMixin extends Entity implements Attackable, WaypointTransmitter {
     @Shadow @Final private AttributeMap attributes;
     @Shadow public abstract double getAttributeValue(Holder<Attribute> attribute);
 

@@ -8,8 +8,8 @@ import net.ntrdeal.ntrdeals_items.reference.ModBlockItemIds;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
-    public ModBlockTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+public class ModBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
+    public ModBlockTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider);
     }
 

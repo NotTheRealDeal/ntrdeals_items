@@ -1,0 +1,13 @@
+// 26.3	-999999999-01-01T00:00:00	NTRDeal's Items/Tags for minecraft:item
+b0255a24a933301eb6cf99a267fccdcea1738fb5 data/c/tags/item/armors.json
+276c810233a4af8cacf339d55c5182b70243e02f data/minecraft/tags/item/chest_armor.json
+7fd6dc6ee14108cf120f9fda18dd541cc95c6e9d data/minecraft/tags/item/foot_armor.json
+5dddca910d8a8b9bd04f102137002a2c28300082 data/minecraft/tags/item/head_armor.json
+9f3888b2d93d83d7e925a3d9540e7e01b82eca03 data/minecraft/tags/item/leg_armor.json
+3bcfb139344d2c95f3e2bc2ca7da9612a6c47f0f data/minecraft/tags/item/swords.json
+beee04f25380a76035be0aa59ae68e9cfe635f73 data/ntrdeals_items/tags/item/cosmolite.json
+40cfad777c12df2dfc371f6bb585c96134bb949c data/ntrdeals_items/tags/item/cosmolite_armor.json
+6d2011c02f492ed4a2937547056c1d3b872a252e data/ntrdeals_items/tags/item/lunarite.json
+10f16d5b5c9cafb836e3b469c94227f5416a3bf3 data/ntrdeals_items/tags/item/lunarite_armor.json
+c1441bdc4cf8690ded1230c33f029c2cf530f301 data/ntrdeals_items/tags/item/repairs_cosmolite_armor.json
+986f3f56b94c2101f5221886fade684d754a4cfb data/ntrdeals_items/tags/item/repairs_lunarite_armor.json

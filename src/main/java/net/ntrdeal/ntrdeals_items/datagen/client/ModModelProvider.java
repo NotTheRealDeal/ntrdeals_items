@@ -1,16 +1,24 @@
-package net.ntrdeal.ntrdeals_items.datagen;
+package net.ntrdeal.ntrdeals_items.datagen.client;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
-import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.*;
+import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 import net.ntrdeal.ntrdeals_items.block.ModBlocks;
 import net.ntrdeal.ntrdeals_items.item.ModItems;
-import net.ntrdeal.ntrdeals_items.item.equipment.ModEquipmentAssets;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Map;
+import java.util.Optional;
+
 public class ModModelProvider extends FabricModelProvider {
+    public static final ModelTemplate FULL_CHORUS_FLOWER_TEMPLATE = new ModelTemplate(
+            Optional.of(NTRDealsItems.id("block/full_chorus_flower_template")), Optional.empty(), TextureSlot.TEXTURE
+    );
+    public TexturedModel.Provider FULL_CHORUS_FLOWER_MODEL = TexturedModel.createDefault(TextureMapping::defaultTexture, FULL_CHORUS_FLOWER_TEMPLATE);
+
     public ModModelProvider(FabricPackOutput output) {
         super(output);
     }
@@ -23,6 +31,8 @@ public class ModModelProvider extends FabricModelProvider {
         generator.createTrivialCube(ModBlocks.RAW_COSMOLITE_BLOCK);
         generator.createTrivialCube(ModBlocks.LUNARITE_BLOCK);
         generator.createTrivialCube(ModBlocks.COSMOLITE_BLOCK);
+
+        generator.createTrivialBlock(ModBlocks.DRIED_CHORUS_FLOWER, FULL_CHORUS_FLOWER_MODEL);
     }
 
     @Override
@@ -32,15 +42,18 @@ public class ModModelProvider extends FabricModelProvider {
         generator.generateFlatItem(ModItems.LUNARITE_INGOT, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(ModItems.COSMOLITE_INGOT, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(ModItems.TRIM_SWAPPER, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(ModItems.CHORUS_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
 
-        generator.generateTrimmableItem(ModItems.LUNARITE_HELMET, ModEquipmentAssets.LUNARITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        generator.generateTrimmableItem(ModItems.LUNARITE_CHESTPLATE, ModEquipmentAssets.LUNARITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        generator.generateTrimmableItem(ModItems.LUNARITE_LEGGINGS, ModEquipmentAssets.LUNARITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        generator.generateTrimmableItem(ModItems.LUNARITE_BOOTS, ModEquipmentAssets.LUNARITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        generator.generateTrimmableArmorSet(
+                ModItems.LUNARITE_HELMET, ModItems.LUNARITE_CHESTPLATE,
+                ModItems.LUNARITE_LEGGINGS, ModItems.LUNARITE_BOOTS,
+                false, Map.of()
+        );
 
-        generator.generateTrimmableItem(ModItems.COSMOLITE_HELMET, ModEquipmentAssets.COSMOLITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        generator.generateTrimmableItem(ModItems.COSMOLITE_CHESTPLATE, ModEquipmentAssets.COSMOLITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        generator.generateTrimmableItem(ModItems.COSMOLITE_LEGGINGS, ModEquipmentAssets.COSMOLITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        generator.generateTrimmableItem(ModItems.COSMOLITE_BOOTS, ModEquipmentAssets.COSMOLITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        generator.generateTrimmableArmorSet(
+                ModItems.COSMOLITE_HELMET, ModItems.COSMOLITE_CHESTPLATE,
+                ModItems.COSMOLITE_LEGGINGS, ModItems.COSMOLITE_BOOTS,
+                false, Map.of()
+        );
     }
 }

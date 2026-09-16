@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ntrdeals_items:lunarite_helmet"
+        "recipes": "ntrdeals_items:lunarite_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

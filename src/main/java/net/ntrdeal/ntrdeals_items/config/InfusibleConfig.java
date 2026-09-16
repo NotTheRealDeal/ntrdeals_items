@@ -54,21 +54,12 @@ public class InfusibleConfig implements ResourceManagerReloadListener {
     }
 
     @Nullable
-    public static InfusibleEntry getEntry(Item item) {
-        InfusibleEntry entry = ENTRIES.get(item);
+    public static InfusibleEntry getEntry(ItemStack stack) {
+        if (stack.isEmpty()) return null;
+        InfusibleEntry entry = stack.get(ModDataComponents.INFUSIBLE);
         if (entry != null) return entry;
+        else if (stack.hasNonDefault(ModDataComponents.INFUSIBLE)) return null;
         lazyInitialize();
-        return ENTRIES.get(item);
-    }
-
-    @Nullable
-    public static InfusibleEntry isInfusible(ItemStack stack) {
-        if (stack.get(ModDataComponents.INFUSIBLE) instanceof InfusibleEntry entry) {
-            return entry;
-        } else if (InfusibleConfig.getEntry(stack.getItem()) instanceof InfusibleEntry entry) {
-            return entry;
-        } else {
-            return null;
-        }
+        return ENTRIES.get(stack.getItem());
     }
 }

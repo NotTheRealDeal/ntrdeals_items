@@ -6,11 +6,13 @@ import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 import net.ntrdeal.ntrdeals_items.config.InfusibleConfiguration;
 import net.ntrdeal.ntrdeals_items.config.InfusionConfiguration;
 
-public interface ModRegistries {
-    ResourceKey<Registry<InfusionConfiguration>> INFUSION = createRegistryKey("infusion");
-    ResourceKey<Registry<InfusibleConfiguration>> INFUSIBLE = createRegistryKey("infusible");
+public final class ModRegistries {
+    private ModRegistries(){}
 
-    private static <T> ResourceKey<Registry<T>> createRegistryKey(final String name) {
+    public static final ResourceKey<Registry<InfusionConfiguration>> INFUSION = create("infusion");
+    public static final ResourceKey<Registry<InfusibleConfiguration>> INFUSIBLE = create("infusible");
+
+    private static <T> ResourceKey<Registry<T>> create(final String name) {
         return ResourceKey.createRegistryKey(NTRDealsItems.id(name));
     }
 }

@@ -9,14 +9,13 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
-import net.ntrdeal.ntrdeals_items.item.component.InfuseAttributes;
 import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
-import net.ntrdeal.realapi.data.mixin.RealMixin;
+import net.ntrdeal.ntrdeals_items.item.component.custom.InfuseAttributes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Mob.class)
-public abstract class MobMixin extends LivingEntity implements Targeting, EquipmentUser, Leashable, RealMixin<Mob> {
+public abstract class MobMixin extends LivingEntity implements Targeting, EquipmentUser, Leashable {
     protected MobMixin(EntityType<? extends LivingEntity> type, Level level) {
         super(type, level);
     }

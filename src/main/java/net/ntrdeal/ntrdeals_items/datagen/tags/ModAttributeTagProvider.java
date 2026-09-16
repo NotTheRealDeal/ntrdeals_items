@@ -10,8 +10,8 @@ import net.ntrdeal.realapi.tag.RealAttributeTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModAttributeTagsProvider extends FabricTagsProvider<Attribute> {
-    public ModAttributeTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+public class ModAttributeTagProvider extends FabricTagsProvider<Attribute> {
+    public ModAttributeTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, Registries.ATTRIBUTE, provider);
     }
 

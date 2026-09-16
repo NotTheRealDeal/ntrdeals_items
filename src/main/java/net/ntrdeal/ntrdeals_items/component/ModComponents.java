@@ -13,6 +13,9 @@ public class ModComponents implements EntityComponentInitializer {
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerFor(LivingEntity.class, PASSIVE_REGEN, PassiveRegenComponent::new);
-        PassiveRegenComponent.registerEvent();
+    }
+
+    public static void register() {
+        PassiveRegenComponent.register();
     }
 }

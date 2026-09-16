@@ -8,7 +8,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.ntrdeal.ntrdeals_items.reference.ModBlockItemIds;
 
-public class ModBlocks {
+public final class ModBlocks {
+    private ModBlocks(){}
+
     public static final Block LUNARITE_ORE = Blocks.register(ModBlockItemIds.LUNARITE_ORE.block(), properties ->
             new DropExperienceBlock(UniformInt.of(5, 7), properties), BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)
     );

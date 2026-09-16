@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ntrdeals_items:raw_cosmolite"
+        "recipes": "ntrdeals_items:raw_cosmolite"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

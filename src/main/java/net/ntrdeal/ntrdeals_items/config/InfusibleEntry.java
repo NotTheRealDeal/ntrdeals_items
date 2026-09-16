@@ -13,16 +13,12 @@ public record InfusibleEntry(double positiveMultiplier, double negativeMultiplie
     ).apply(entry, InfusibleEntry::new));
 
     public static final StreamCodec<ByteBuf, InfusibleEntry> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.DOUBLE,
-            InfusibleEntry::positiveMultiplier,
-            ByteBufCodecs.DOUBLE,
-            InfusibleEntry::negativeMultiplier,
+            ByteBufCodecs.DOUBLE, InfusibleEntry::positiveMultiplier,
+            ByteBufCodecs.DOUBLE, InfusibleEntry::negativeMultiplier,
             InfusibleEntry::new
     );
 
-    public double multiply(double value, InfusionEntry.TYPE type) {
-        if (type.equals(InfusionEntry.TYPE.POSITIVE)) value *= this.positiveMultiplier;
-        if (type.equals(InfusionEntry.TYPE.NEGATIVE)) value *= this.negativeMultiplier;
-        return value;
+    public double multiply(InfusionData data) {
+        return data.value() * (data.type() == InfusionEntry.TYPE.POSITIVE ? this.positiveMultiplier : this.negativeMultiplier);
     }
 }

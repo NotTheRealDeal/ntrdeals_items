@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ntrdeals_items:cosmolite_chestplate"
+        "recipes": "ntrdeals_items:cosmolite_chestplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

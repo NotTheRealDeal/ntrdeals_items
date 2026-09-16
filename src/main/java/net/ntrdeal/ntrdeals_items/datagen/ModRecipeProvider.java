@@ -2,12 +2,15 @@ package net.ntrdeal.ntrdeals_items.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.ntrdeal.ntrdeals_items.block.ModBlocks;
@@ -22,8 +25,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
-        return new RecipeProvider(provider, recipeOutput) {
+    protected RecipeProvider createRecipeProvider(HolderLookup.Provider lookup, BootstrapContext<Recipe<?>> recipes, BootstrapContext<Advancement> advancements) {
+        return new RecipeProvider(recipes, advancements) {
             @Override
             public void buildRecipes() {
                 this.nineBlockStorageRecipes(RecipeCategory.MISC, ModItems.RAW_LUNARITE, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_LUNARITE_BLOCK);
@@ -108,8 +111,4 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .save(output);
     }
 
-    @Override
-    public String getName() {
-        return "Recipes";
-    }
 }

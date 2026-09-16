@@ -9,8 +9,8 @@ import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.trim.ArmorTrim;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
-import net.ntrdeal.ntrdeals_items.item.component.InfuseAttributes;
 import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
+import net.ntrdeal.ntrdeals_items.item.component.custom.InfuseAttributes;
 import org.jspecify.annotations.Nullable;
 
 import java.io.InputStreamReader;
@@ -37,17 +37,16 @@ public class InfusionConfig implements ResourceManagerReloadListener {
 
     @Nullable
     public static InfusionEntry getEntry(@Nullable ArmorTrim trim) {
-        if (trim != null && trim.material().unwrapKey().isPresent()) return ENTRIES.get(trim.material().unwrapKey().get());
-        else return null;
+        return trim == null ? null : trim.material().unwrapKey().map(ENTRIES::get).orElse(null);
     }
 
     public static boolean refreshInfusion(ItemStack stack) {
-        if (stack.isEmpty()) return false;
-
-        InfuseAttributes attributes = null;
-        if (InfusionConfig.getEntry(stack.get(DataComponents.TRIM)) instanceof InfusionEntry entry) {
-            attributes = InfuseAttributes.of(entry.getAttributes(stack));
+        if (stack.isEmpty() || !(InfusionConfig.getEntry(stack.get(DataComponents.TRIM)) instanceof InfusionEntry entry)) {
+            stack.remove(ModDataComponents.INFUSE_ATTRIBUTES);
+            return false;
         }
+
+        InfuseAttributes attributes = InfuseAttributes.of(entry.getAttributes(stack));
         stack.set(ModDataComponents.INFUSE_ATTRIBUTES, attributes);
         return attributes != null;
     }

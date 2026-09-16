@@ -1,0 +1,8 @@
+// 26.3	-999999999-01-01T00:00:00	NTRDeal's Items/Block Loot Tables
+c3df0153d4ce9c3e2823310f058e840e9cca30df data/ntrdeals_items/loot_table/blocks/cosmolite_block.json
+2df0fb6d8530a599b943c8d199139ad2008d1c0c data/ntrdeals_items/loot_table/blocks/cosmolite_ore.json
+9b4a2c5e678d823cba329153f07f1a5f6ad5f1ef data/ntrdeals_items/loot_table/blocks/dried_chorus_flower.json
+2902eb3c339eeb39cd086c18afa58f1a3cce50a4 data/ntrdeals_items/loot_table/blocks/lunarite_block.json
+f4bdf1e0751ab6ed17b9be6dafa4ab5d1451b184 data/ntrdeals_items/loot_table/blocks/lunarite_ore.json
+66f001fa3d3c8a43fa40ec741e490c14f16f335f data/ntrdeals_items/loot_table/blocks/raw_cosmolite_block.json
+b0de52d117067e5ed3344cf3547db797a4abf475 data/ntrdeals_items/loot_table/blocks/raw_lunarite_block.json

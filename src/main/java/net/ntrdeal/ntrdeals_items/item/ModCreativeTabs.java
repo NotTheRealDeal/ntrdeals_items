@@ -32,6 +32,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.COSMOLITE_BOOTS);
 
                         output.accept(ModItems.TRIM_SWAPPER);
+                        output.accept(ModItems.CHORUS_SWORD);
                         output.accept(ModBlocks.DRIED_CHORUS_FLOWER);
                     })
     );

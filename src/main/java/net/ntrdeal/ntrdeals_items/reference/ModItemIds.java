@@ -6,8 +6,10 @@ import net.minecraft.world.item.Item;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 import net.ntrdeal.realapi.util.RegistryUtil;
 
-public class ModItemIds {
-    private static final RegistryUtil.ResourceCreator<Item> CREATOR = RegistryUtil.creator(Registries.ITEM, NTRDealsItems::id);
+public final class ModItemIds {
+    private ModItemIds(){}
+
+    private static final RegistryUtil.ResourceCreator<Item> CREATOR = RegistryUtil.resourceCreator(Registries.ITEM, NTRDealsItems::id);
 
     public static final ResourceKey<Item> RAW_LUNARITE = CREATOR.create("raw_lunarite");
     public static final ResourceKey<Item> RAW_COSMOLITE = CREATOR.create("raw_cosmolite");
@@ -26,4 +28,6 @@ public class ModItemIds {
     public static final ResourceKey<Item> COSMOLITE_BOOTS = CREATOR.create("cosmolite_boots");
 
     public static final ResourceKey<Item> TRIM_SWAPPER = CREATOR.create("trim_swapper");
+
+    public static final ResourceKey<Item> CHORUS_SWORD = CREATOR.create("chorus_sword");
 }

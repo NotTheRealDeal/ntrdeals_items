@@ -10,23 +10,19 @@ import net.ntrdeal.ntrdeals_items.tags.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
-    public ModItemTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
+    public ModItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider);
     }
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(ItemTags.HEAD_ARMOR).add(ModItemIds.COSMOLITE_HELMET);
-        this.tag(ItemTags.CHEST_ARMOR).add(ModItemIds.COSMOLITE_CHESTPLATE);
-        this.tag(ItemTags.LEG_ARMOR).add(ModItemIds.COSMOLITE_LEGGINGS);
-        this.tag(ItemTags.FOOT_ARMOR).add(ModItemIds.COSMOLITE_BOOTS);
-
         this.tag(ModItemTags.LUNARITE_ARMOR)
                 .add(ModItemIds.LUNARITE_HELMET)
                 .add(ModItemIds.LUNARITE_CHESTPLATE)
                 .add(ModItemIds.LUNARITE_LEGGINGS)
-                .add(ModItemIds.LUNARITE_BOOTS);
+                .add(ModItemIds.LUNARITE_BOOTS)
+                .remove();
 
         this.tag(ModItemTags.COSMOLITE_ARMOR)
                 .add(ModItemIds.COSMOLITE_HELMET)
@@ -34,15 +30,20 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
                 .add(ModItemIds.COSMOLITE_LEGGINGS)
                 .add(ModItemIds.COSMOLITE_BOOTS);
 
-        this.tag(ItemTags.TRIMMABLE_ARMOR).addTag(ModItemTags.LUNARITE_ARMOR);
-        this.tag(ConventionalItemTags.ARMORS).addTag(ModItemTags.LUNARITE_ARMOR).addTag(ModItemTags.COSMOLITE_ARMOR);
-
         this.tag(ModItemTags.REPAIRS_LUNARITE_ARMOR).add(ModItemIds.LUNARITE_INGOT);
         this.tag(ModItemTags.REPAIRS_COSMOLITE_ARMOR).add(ModItemIds.COSMOLITE_INGOT);
 
-        this.tag(ModItemTags.COSMOLITE)
-                .forceAddTag(ModItemTags.COSMOLITE_ARMOR)
-                .add(ModItemIds.RAW_LUNARITE)
-                .add(ModItemIds.COSMOLITE_INGOT);
+        this.tag(ModItemTags.LUNARITE).forceAddTag(ModItemTags.LUNARITE_ARMOR).add(ModItemIds.RAW_LUNARITE, ModItemIds.LUNARITE_INGOT);
+        this.tag(ModItemTags.COSMOLITE).forceAddTag(ModItemTags.COSMOLITE_ARMOR).add(ModItemIds.RAW_COSMOLITE, ModItemIds.COSMOLITE_INGOT);
+
+
+        this.tag(ItemTags.HEAD_ARMOR).add(ModItemIds.LUNARITE_HELMET, ModItemIds.COSMOLITE_HELMET);
+        this.tag(ItemTags.CHEST_ARMOR).add(ModItemIds.LUNARITE_CHESTPLATE, ModItemIds.COSMOLITE_CHESTPLATE);
+        this.tag(ItemTags.LEG_ARMOR).add(ModItemIds.LUNARITE_LEGGINGS, ModItemIds.COSMOLITE_LEGGINGS);
+        this.tag(ItemTags.FOOT_ARMOR).add(ModItemIds.LUNARITE_BOOTS, ModItemIds.COSMOLITE_BOOTS);
+
+        this.tag(ConventionalItemTags.ARMORS).addTag(ModItemTags.LUNARITE_ARMOR).addTag(ModItemTags.COSMOLITE_ARMOR);
+
+        this.tag(ItemTags.SWORDS).add(ModItemIds.CHORUS_SWORD);
     }
 }

@@ -8,14 +8,15 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.equipment.trim.ArmorTrim;
 import net.minecraft.world.level.Level;
 import net.ntrdeal.ntrdeals_items.config.InfusibleConfig;
 import net.ntrdeal.ntrdeals_items.config.InfusionConfig;
 import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
-import net.ntrdeal.ntrdeals_items.item.component.TrimData;
-import net.ntrdeal.ntrdeals_items.item.component.TrimSwapperComponent;
+import net.ntrdeal.ntrdeals_items.item.component.custom.TrimSwapper;
 
-import java.util.Map;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class TrimSwapperItem extends Item {
     public TrimSwapperItem(Properties properties) {
@@ -25,19 +26,25 @@ public class TrimSwapperItem extends Item {
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack trimSwapper = player.getItemInHand(hand);
-        Map<EquipmentSlot, TrimData> slotMap = trimSwapper.getOrDefault(ModDataComponents.TRIM_SWAPPER, TrimSwapperComponent.DEFAULT).getMap();
+        HashMap<EquipmentSlot, ArmorTrim> slotMap = trimSwapper.getOrDefault(ModDataComponents.TRIM_SWAPPER, TrimSwapper.EMPTY).toHashMap();
 
-        slotMap.forEach((slot, data) -> {
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack stack = player.getItemBySlot(slot);
-            if (data.isComplete() && (stack.is(ItemTags.TRIMMABLE_ARMOR) || InfusibleConfig.isInfusible(stack) != null)) {
-                slotMap.put(slot, TrimData.of(stack.get(DataComponents.TRIM)));
-                stack.set(DataComponents.TRIM, data.getTrim());
+            if (stack.isEmpty()) continue;
+
+            if (stack.is(ItemTags.TRIMMABLE_ARMOR) || InfusibleConfig.getEntry(stack) != null) {
+                ArmorTrim itemsTrim = stack.get(DataComponents.TRIM);
+                ArmorTrim slotsTrim = slotMap.get(slot);
+                if (Objects.equals(itemsTrim, slotsTrim)) continue;
+                stack.set(DataComponents.TRIM, slotsTrim);
+                if (itemsTrim == null) slotMap.remove(slot);
+                else slotMap.put(slot, itemsTrim);
                 InfusionConfig.refreshInfusion(stack);
             }
-        });
+        }
 
-        TrimSwapperComponent component = TrimSwapperComponent.of(slotMap);
-        trimSwapper.set(ModDataComponents.TRIM_SWAPPER, component.isEmpty() ? null : component);
+        if (slotMap.isEmpty()) trimSwapper.remove(ModDataComponents.TRIM_SWAPPER);
+        else trimSwapper.set(ModDataComponents.TRIM_SWAPPER, TrimSwapper.fromHashMap(slotMap));
 
         return InteractionResult.SUCCESS;
     }

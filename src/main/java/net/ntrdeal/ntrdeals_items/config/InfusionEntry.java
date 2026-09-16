@@ -18,21 +18,16 @@ import java.util.Map;
 public record InfusionEntry(Map<Holder<Attribute>, InfusionData> attributes) {
     @Nullable
     public ItemAttributeModifiers getAttributes(ItemStack stack) {
-        if (stack.get(DataComponents.EQUIPPABLE) instanceof Equippable equippable && InfusibleConfig.isInfusible(stack) instanceof InfusibleEntry entry) {
-            ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+        Equippable equippable = stack.get(DataComponents.EQUIPPABLE);
+        InfusibleEntry entry = InfusibleConfig.getEntry(stack);
+        if (equippable == null || entry == null) return null;
+        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
 
-            this.attributes.forEach((attribute, data) -> builder.add(
-                    attribute,
-                    new AttributeModifier(
-                            NTRDealsItems.id(equippable.slot().getSerializedName()+"-infusion"),
-                            entry.multiply(data.value(), data.type()),
-                            AttributeModifier.Operation.ADD_VALUE
-                    ),
-                    EquipmentSlotGroup.bySlot(equippable.slot())
-            ));
+        this.attributes.forEach((holder, data) -> builder.add(holder, new AttributeModifier(
+                NTRDealsItems.id(equippable.slot().getSerializedName() + "_infusion"), entry.multiply(data), AttributeModifier.Operation.ADD_VALUE
+        ), EquipmentSlotGroup.bySlot(equippable.slot())));
 
-            return builder.build();
-        } else return null;
+        return builder.build();
     }
 
     public enum TYPE implements StringRepresentable {

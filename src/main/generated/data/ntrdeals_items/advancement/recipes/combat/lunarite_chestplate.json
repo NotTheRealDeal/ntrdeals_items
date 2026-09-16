@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ntrdeals_items:lunarite_chestplate"
+        "recipes": "ntrdeals_items:lunarite_chestplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ntrdeals_items:cosmolite_helmet"
+        "recipes": "ntrdeals_items:cosmolite_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

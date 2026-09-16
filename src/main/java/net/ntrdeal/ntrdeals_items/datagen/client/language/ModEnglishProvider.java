@@ -1,4 +1,4 @@
-package net.ntrdeal.ntrdeals_items.datagen.language;
+package net.ntrdeal.ntrdeals_items.datagen.client.language;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -36,6 +36,8 @@ public class ModEnglishProvider extends FabricLanguageProvider {
 
         builder.add(ModItems.TRIM_SWAPPER, "Trim Swapper");
 
+        builder.add(ModItems.CHORUS_SWORD, "Chorus Sword");
+
         builder.add(ModBlocks.LUNARITE_ORE, "Lunarite Ore");
         builder.add(ModBlocks.COSMOLITE_ORE.asItem(), "Cosmolite Ore");
         builder.add(ModBlocks.RAW_LUNARITE_BLOCK.asItem(), "Block of Raw Lunarite");
@@ -51,6 +53,7 @@ public class ModEnglishProvider extends FabricLanguageProvider {
         builder.add(ModItemTags.COSMOLITE_ARMOR, "Cosmolite Armor");
         builder.add(ModItemTags.REPAIRS_LUNARITE_ARMOR, "Repairs Lunarite Armor");
         builder.add(ModItemTags.REPAIRS_COSMOLITE_ARMOR, "Repairs Cosmolite Armor");
+        builder.add(ModItemTags.LUNARITE, "Lunarite");
         builder.add(ModItemTags.COSMOLITE, "Cosmolite");
 
         builder.add(ModCreativeTabs.NTRDEALS_ITEMS.getDisplayName().getString(), "NTRDeal's Items");

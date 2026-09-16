@@ -3,7 +3,9 @@ package net.ntrdeal.ntrdeals_items.reference;
 import net.minecraft.references.BlockItemId;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 
-public class ModBlockItemIds {
+public final class ModBlockItemIds {
+    private ModBlockItemIds(){}
+
     public static final BlockItemId LUNARITE_ORE = BlockItemId.create(
             NTRDealsItems.id("lunarite_ore"), NTRDealsItems.id("lunarite_ore")
     );

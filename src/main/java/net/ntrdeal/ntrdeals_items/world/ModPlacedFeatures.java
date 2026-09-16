@@ -6,52 +6,39 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
+import net.ntrdeal.realapi.util.RegistryUtil;
 
 import java.util.List;
 
-public class ModPlacedFeatures {
-    public static final ResourceKey<PlacedFeature> LUNARITE_GEODE = resourceKey("lunarite_geode");
-    public static final ResourceKey<PlacedFeature> COSMOLITE_GEODE = resourceKey("cosmolite_geode");
+public final class ModPlacedFeatures {
+    private ModPlacedFeatures(){}
+
+    private static final RegistryUtil.ResourceCreator<PlacedFeature> CREATOR = RegistryUtil.resourceCreator(Registries.PLACED_FEATURE, NTRDealsItems::id);
+
+    public static final ResourceKey<PlacedFeature> LUNARITE_GEODE = CREATOR.create("lunarite_geode");
+    public static final ResourceKey<PlacedFeature> COSMOLITE_GEODE = CREATOR.create("cosmolite_geode");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
-        HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
+        HolderGetter<Feature> getter = context.lookup(Registries.FEATURE);
 
-        register(context, LUNARITE_GEODE, features.getOrThrow(ModConfiguredFeatures.LUNARITE_GEODE),
-                RarityFilter.onAverageOnceEvery(85),
-                InSquarePlacement.spread(),
+        register(context, LUNARITE_GEODE, getter.getOrThrow(ModConfiguredFeatures.LUNARITE_GEODE),
+                RarityFilter.onAverageOnceEvery(85), InSquarePlacement.spread(),
                 HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(64), VerticalAnchor.aboveBottom(94))
         );
 
-        register(context, COSMOLITE_GEODE, features.getOrThrow(ModConfiguredFeatures.COSMOLITE_GEODE),
-                RarityFilter.onAverageOnceEvery(45),
-                InSquarePlacement.spread(),
-                BiomeFilter.biome(),
+        register(context, COSMOLITE_GEODE, getter.getOrThrow(ModConfiguredFeatures.COSMOLITE_GEODE),
+                RarityFilter.onAverageOnceEvery(45), InSquarePlacement.spread(), BiomeFilter.biome(),
                 HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(14), VerticalAnchor.aboveBottom(44))
         );
     }
 
-    public static ResourceKey<PlacedFeature> resourceKey(String name){
-        return ResourceKey.create(Registries.PLACED_FEATURE, NTRDealsItems.id(name));
-    }
-
-    public static void register(
-            BootstrapContext<PlacedFeature> context,
-            ResourceKey<PlacedFeature> key,
-            Holder<ConfiguredFeature<?, ?>> feature,
-            List<PlacementModifier> modifiers
+    private static void register(
+            BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key,
+            Holder<Feature> feature, PlacementModifier... modifiers
     ) {
-        context.register(key, new PlacedFeature(feature, modifiers));
-    }
-
-    public static void register(
-            BootstrapContext<PlacedFeature> context,
-            ResourceKey<PlacedFeature> key,
-            Holder<ConfiguredFeature<?, ?>> feature,
-            PlacementModifier... modifiers
-    ) {
-        register(context, key, feature, List.of(modifiers));
+        context.register(key, new PlacedFeature(feature, List.of(modifiers)));
     }
 }

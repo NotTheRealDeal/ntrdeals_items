@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ntrdeals_items:cosmolite_boots"
+        "recipes": "ntrdeals_items:cosmolite_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

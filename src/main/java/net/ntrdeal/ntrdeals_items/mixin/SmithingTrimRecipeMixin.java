@@ -7,13 +7,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.SimpleSmithingRecipe;
 import net.minecraft.world.item.crafting.SmithingTrimRecipe;
 import net.ntrdeal.ntrdeals_items.config.InfusionConfig;
-import net.ntrdeal.realapi.data.mixin.RealMixin;
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(SmithingTrimRecipe.class)
-public abstract class SmithingTrimRecipeMixin extends SimpleSmithingRecipe implements RealMixin<SmithingTrimRecipe> {
+public abstract class SmithingTrimRecipeMixin extends SimpleSmithingRecipe {
     protected SmithingTrimRecipeMixin(CommonInfo commonInfo) {
         super(commonInfo);
     }

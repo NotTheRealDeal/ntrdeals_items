@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ntrdeals_items:lunarite_boots"
+        "recipes": "ntrdeals_items:lunarite_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

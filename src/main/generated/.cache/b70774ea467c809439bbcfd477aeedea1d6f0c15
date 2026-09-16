@@ -1,0 +1,5 @@
+// 26.3	-999999999-01-01T00:00:00	NTRDeal's Items/Tags for minecraft:block
+b23cf9b589d2b1c534b8aa2f36488a47ba4a52fe data/minecraft/tags/block/incorrect_for_diamond_tool.json
+bd046c24e69bf890227f1e974dd4b87217677b30 data/minecraft/tags/block/mineable/pickaxe.json
+b23cf9b589d2b1c534b8aa2f36488a47ba4a52fe data/minecraft/tags/block/needs_diamond_tool.json
+56309235ae9de90416e400527be8f9e4eb57dd8b data/minecraft/tags/block/needs_iron_tool.json

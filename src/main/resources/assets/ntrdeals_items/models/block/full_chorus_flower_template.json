@@ -1,8 +1,7 @@
 {
   "parent": "block/block",
   "textures": {
-    "texture": "ntrdeals_items:block/dried_chorus_flower",
-    "particle": "ntrdeals_items:block/dried_chorus_flower"
+    "particle": "#texture"
   },
   "elements": [
     {
