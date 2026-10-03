@@ -14,6 +14,7 @@
     "requireAnnotations": true
   },
   "client": [
-    "client.EquipmentLayerRendererMixin"
+    "client.EquipmentLayerRendererMixin",
+    "client.HappyGhastRendererMixin"
   ]
 }

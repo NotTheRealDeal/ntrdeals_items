@@ -10,6 +10,7 @@ import net.ntrdeal.ntrdeals_items.datagen.client.ModModelProvider;
 import net.ntrdeal.ntrdeals_items.datagen.client.language.ModEnglishProvider;
 import net.ntrdeal.ntrdeals_items.datagen.tags.ModAttributeTagProvider;
 import net.ntrdeal.ntrdeals_items.datagen.tags.ModBlockTagProvider;
+import net.ntrdeal.ntrdeals_items.datagen.tags.ModDamageTypeTagProvider;
 import net.ntrdeal.ntrdeals_items.datagen.tags.ModItemTagProvider;
 import net.ntrdeal.ntrdeals_items.world.ModConfiguredFeatures;
 import net.ntrdeal.ntrdeals_items.world.ModPlacedFeatures;
@@ -20,18 +21,19 @@ public class NTRDealsItemsDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(@NonNull FabricDataGenerator generator) {
 		FabricDataGenerator.Pack pack = generator.createPack();
 
-		pack.addProvider(ModItemTagProvider::new);
-		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModAttributeTagProvider::new);
+		pack.addProvider(ModBlockTagProvider::new);
+		pack.addProvider(ModDamageTypeTagProvider::new);
+		pack.addProvider(ModItemTagProvider::new);
+		pack.addProvider(ModAdvancementProvider::new);
+		pack.addProvider(ModBlockLootTableProvider::new);
 		pack.addProvider(ModInfusionProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
-		pack.addProvider(ModBlockLootTableProvider::new);
 		pack.addProvider(ModRegistryProvider::new);
-		pack.addProvider(ModAdvancementProvider::new);
 
 		pack.addProvider(ModEnglishProvider::new);
-		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModEquipmentProvider::new);
+		pack.addProvider(ModModelProvider::new);
 	}
 
 	@Override

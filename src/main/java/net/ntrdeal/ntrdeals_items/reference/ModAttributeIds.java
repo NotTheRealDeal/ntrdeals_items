@@ -4,12 +4,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
-import net.ntrdeal.realapi.util.RegistryUtil;
+import net.ntrdeal.realapi.util.registry.ResourceCreator;
 
 public final class ModAttributeIds {
     private ModAttributeIds(){}
 
-    private static final RegistryUtil.ResourceCreator<Attribute> CREATOR = RegistryUtil.resourceCreator(Registries.ATTRIBUTE, NTRDealsItems::id);
+    private static final ResourceCreator<Attribute> CREATOR = ResourceCreator.of(Registries.ATTRIBUTE, NTRDealsItems::id);
 
     public static final ResourceKey<Attribute> PASSIVE_REGENERATE = CREATOR.create("passive_regeneration");
     public static final ResourceKey<Attribute> CLAMPED_SCALE = CREATOR.create("clamped_scale");

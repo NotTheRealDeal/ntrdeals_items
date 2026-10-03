@@ -17,14 +17,14 @@ import net.minecraft.world.level.levelgen.feature.GeodeFeature;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 import net.ntrdeal.ntrdeals_items.block.ModBlocks;
-import net.ntrdeal.realapi.util.RegistryUtil;
+import net.ntrdeal.realapi.util.registry.ResourceCreator;
 
 import java.util.List;
 
 public final class ModConfiguredFeatures {
     private ModConfiguredFeatures(){}
 
-    private static final RegistryUtil.ResourceCreator<Feature> CREATOR = RegistryUtil.resourceCreator(Registries.FEATURE, NTRDealsItems::id);
+    private static final ResourceCreator<Feature> CREATOR = ResourceCreator.of(Registries.FEATURE, NTRDealsItems::id);
 
     public static final ResourceKey<Feature> LUNARITE_GEODE = CREATOR.create("lunarite_geode");
     public static final ResourceKey<Feature> COSMOLITE_GEODE = CREATOR.create("cosmolite_geode");

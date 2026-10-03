@@ -4,11 +4,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.ntrdeal.ntrdeals_items.block.ModBlocks;
-import net.ntrdeal.ntrdeals_items.reference.ModCreativeModeTabIds;
-import net.ntrdeal.realapi.util.RegistryUtil;
+import net.ntrdeal.ntrdeals_items.reference.ModCreativeTabIds;
+import net.ntrdeal.realapi.util.registry.CreativeTabRegistry;
 
 public class ModCreativeTabs {
-    public static final CreativeModeTab NTRDEALS_ITEMS = RegistryUtil.TabUtil.register(ModCreativeModeTabIds.NTRDEALS_ITEMS, builder ->
+    public static final CreativeModeTab NTRDEALS_ITEMS = CreativeTabRegistry.register(ModCreativeTabIds.NTRDEALS_ITEMS, builder ->
             builder.icon(() -> new ItemStack(ModItems.RAW_COSMOLITE)).title(Component.translatable("itemGroup.ntrdeals_items.ntrdeals_items"))
                     .displayItems((_, output) -> {
                         output.accept(ModItems.RAW_LUNARITE);

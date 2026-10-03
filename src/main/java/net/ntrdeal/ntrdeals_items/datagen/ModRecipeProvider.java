@@ -2,19 +2,31 @@ package net.ntrdeal.ntrdeals_items.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.impl.recipe.ingredient.builtin.ComponentsIngredient;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.data.recipes.*;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Unit;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 import net.ntrdeal.ntrdeals_items.block.ModBlocks;
 import net.ntrdeal.ntrdeals_items.item.ModItems;
+import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
+import net.ntrdeal.ntrdeals_items.recipe.SmithingWithComponentsRecipe;
+import net.ntrdeal.ntrdeals_items.reference.ModRecipeIds;
 import net.ntrdeal.ntrdeals_items.tags.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,8 +36,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         super(output, registriesFuture);
     }
 
-    @Override
-    protected RecipeProvider createRecipeProvider(HolderLookup.Provider lookup, BootstrapContext<Recipe<?>> recipes, BootstrapContext<Advancement> advancements) {
+    @Override @SuppressWarnings("UnstableApiUsage")
+    protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, BootstrapContext<Recipe<?>> recipes, BootstrapContext<Advancement> advancements) {
         return new RecipeProvider(recipes, advancements) {
             @Override
             public void buildRecipes() {
@@ -68,6 +80,27 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('S', Blocks.SMITHING_TABLE)
                         .unlockedBy("has_cosmolite_armor", this.has(ModItemTags.COSMOLITE_ARMOR))
                         .save(this.output);
+
+                RecipeUnlockAdvancementBuilder cosmoliteHarnessAdvancement = new RecipeUnlockAdvancementBuilder();
+                cosmoliteHarnessAdvancement.unlockedBy(RecipeProvider.getHasName(ModItems.COSMOLITE_INGOT), this.has(ModItems.COSMOLITE_INGOT));
+
+                this.output.accept(ModRecipeIds.COSMOLITE_HARNESS, new SmithingWithComponentsRecipe(
+                        RecipeBuilder.createCraftingCommonInfo(true), DataComponentPatch.builder()
+                                .set(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.builder()
+                                        .add(Attributes.FLYING_SPEED, new AttributeModifier(
+                                                NTRDealsItems.id("cosmolite_harness"), 1d, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                        ), EquipmentSlotGroup.BODY)
+                                        .add(Attributes.ARMOR, new AttributeModifier(
+                                                NTRDealsItems.id("cosmolite_harness"), 10d, AttributeModifier.Operation.ADD_VALUE
+                                        ), EquipmentSlotGroup.BODY)
+                                        .build()
+                                ).set(ModDataComponents.COSMOLITE, Unit.INSTANCE)
+                        .build(),
+                        new ComponentsIngredient(
+                                Ingredient.of(provider.getOrThrow(ItemTags.HARNESSES)),
+                                DataComponentPatch.builder().remove(ModDataComponents.COSMOLITE).build()
+                        ).toVanilla(), Ingredient.of(ModItems.COSMOLITE_INGOT), Ingredient.of(ModItems.COSMOLITE_INGOT)
+                ), cosmoliteHarnessAdvancement.build(this.output, ModRecipeIds.COSMOLITE_HARNESS, RecipeCategory.MISC));
             }
         };
     }

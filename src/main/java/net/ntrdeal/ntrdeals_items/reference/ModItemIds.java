@@ -4,12 +4,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
-import net.ntrdeal.realapi.util.RegistryUtil;
+import net.ntrdeal.realapi.util.registry.ResourceCreator;
 
 public final class ModItemIds {
     private ModItemIds(){}
 
-    private static final RegistryUtil.ResourceCreator<Item> CREATOR = RegistryUtil.resourceCreator(Registries.ITEM, NTRDealsItems::id);
+    private static final ResourceCreator<Item> CREATOR = ResourceCreator.of(Registries.ITEM, NTRDealsItems::id);
 
     public static final ResourceKey<Item> RAW_LUNARITE = CREATOR.create("raw_lunarite");
     public static final ResourceKey<Item> RAW_COSMOLITE = CREATOR.create("raw_cosmolite");

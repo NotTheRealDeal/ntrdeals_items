@@ -5,8 +5,8 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import net.ntrdeal.ntrdeals_items.block.ModBlocks;
 import net.ntrdeal.ntrdeals_items.entity.ModAttributes;
-import net.ntrdeal.ntrdeals_items.item.ModCreativeTabs;
 import net.ntrdeal.ntrdeals_items.item.ModItems;
+import net.ntrdeal.ntrdeals_items.reference.ModCreativeTabIds;
 import net.ntrdeal.ntrdeals_items.tags.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -46,8 +46,8 @@ public class ModEnglishProvider extends FabricLanguageProvider {
         builder.add(ModBlocks.COSMOLITE_BLOCK.asItem(), "Block of Cosmolite");
         builder.add(ModBlocks.DRIED_CHORUS_FLOWER.asItem(), "Dried Chorus Flower");
 
-        builder.add(ModAttributes.PASSIVE_REGENERATION, "Passive Regeneration");
-        builder.add(ModAttributes.SANITY, "Sanity");
+        builder.addAttribute(ModAttributes.PASSIVE_REGENERATION, "Passive Regeneration");
+        builder.addAttribute(ModAttributes.SANITY, "Sanity");
 
         builder.add(ModItemTags.LUNARITE_ARMOR, "Lunarite Armor");
         builder.add(ModItemTags.COSMOLITE_ARMOR, "Cosmolite Armor");
@@ -56,7 +56,7 @@ public class ModEnglishProvider extends FabricLanguageProvider {
         builder.add(ModItemTags.LUNARITE, "Lunarite");
         builder.add(ModItemTags.COSMOLITE, "Cosmolite");
 
-        builder.add(ModCreativeTabs.NTRDEALS_ITEMS.getDisplayName().getString(), "NTRDeal's Items");
+        builder.addCreativeModeTab(ModCreativeTabIds.NTRDEALS_ITEMS, "NTRDeal's Items");
 
         builder.add("tooltip.ntrdeals_items.error.incomplete", "§cIncomplete trim!");
         builder.add("advancements.adventure.ntrdeals_items.extremely_dedicated.title", "Extreme Dedication");

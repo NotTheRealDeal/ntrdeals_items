@@ -3,34 +3,47 @@ package net.ntrdeal.ntrdeals_items.item.component;
 import net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.util.Unit;
 import net.ntrdeal.ntrdeals_items.config.InfusibleEntry;
 import net.ntrdeal.ntrdeals_items.item.component.custom.ChorusMeter;
 import net.ntrdeal.ntrdeals_items.item.component.custom.InfuseAttributes;
 import net.ntrdeal.ntrdeals_items.item.component.custom.TrimSwapper;
 import net.ntrdeal.ntrdeals_items.reference.ModDataComponentIds;
-import net.ntrdeal.realapi.util.RegistryUtil;
+import net.ntrdeal.realapi.util.registry.DataComponentRegistry;
 
 public class ModDataComponents {
-    public static final DataComponentType<TrimSwapper> TRIM_SWAPPER = RegistryUtil.ComponentUtil.register(
+    public static final DataComponentType<TrimSwapper> TRIM_SWAPPER = DataComponentRegistry.register(
             ModDataComponentIds.TRIM_SWAPPER, builder -> builder.persistent(TrimSwapper.CODEC)
                     .networkSynchronized(TrimSwapper.STREAM_CODEC).ignoreSwapAnimation().cacheEncoding()
     );
-    public static final DataComponentType<InfuseAttributes> INFUSE_ATTRIBUTES = RegistryUtil.ComponentUtil.register(
+    public static final DataComponentType<InfuseAttributes> INFUSE_ATTRIBUTES = DataComponentRegistry.register(
             ModDataComponentIds.INFUSE_ATTRIBUTES, builder -> builder.persistent(InfuseAttributes.CODEC)
                     .networkSynchronized(InfuseAttributes.STREAM_CODEC).ignoreSwapAnimation().cacheEncoding()
     );
-    public static final DataComponentType<InfusibleEntry> INFUSIBLE = RegistryUtil.ComponentUtil.register(
+    public static final DataComponentType<InfusibleEntry> INFUSIBLE = DataComponentRegistry.register(
             ModDataComponentIds.INFUSIBLE, builder -> builder.persistent(InfusibleEntry.CODEC)
                     .networkSynchronized(InfusibleEntry.STREAM_CODEC).cacheEncoding()
     );
-    public static final DataComponentType<ChorusMeter> CHORUS_METER = RegistryUtil.ComponentUtil.register(
+    public static final DataComponentType<ChorusMeter> CHORUS_METER = DataComponentRegistry.register(
             ModDataComponentIds.CHORUS_METER, builder -> builder.persistent(ChorusMeter.CODEC)
                     .networkSynchronized(ChorusMeter.STREAM_CODEC).ignoreSwapAnimation().cacheEncoding()
+    );
+
+    public static final DataComponentType<Unit> COSMOLITE = DataComponentRegistry.register(
+            ModDataComponentIds.COSMOLITE, builder -> builder.persistent(Unit.CODEC)
+                    .networkSynchronized(Unit.STREAM_CODEC).ignoreSwapAnimation().cacheEncoding()
     );
 
     public static void register() {
         ItemComponentTooltipProviderRegistry.addAfter(DataComponents.TRIM, ModDataComponents.INFUSE_ATTRIBUTES);
         ItemComponentTooltipProviderRegistry.addAfter(DataComponents.TRIM, ModDataComponents.TRIM_SWAPPER);
+        ItemComponentTooltipProviderRegistry.addBefore(
+                DataComponents.ATTRIBUTE_MODIFIERS, COSMOLITE, _ -> (
+                        _, consumer, _, _
+                ) -> consumer.accept(Component.literal("Cosmolite Infused").withColor(TextColor.BLUE))
+        );
         ChorusMeter.register();
     }
 }

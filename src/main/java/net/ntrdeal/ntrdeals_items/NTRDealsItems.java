@@ -8,6 +8,7 @@ import net.ntrdeal.ntrdeals_items.component.ModComponents;
 import net.ntrdeal.ntrdeals_items.config.ModConfig;
 import net.ntrdeal.ntrdeals_items.entity.ModAttributes;
 import net.ntrdeal.ntrdeals_items.item.ModItems;
+import net.ntrdeal.ntrdeals_items.recipe.ModRecipes;
 import net.ntrdeal.ntrdeals_items.world.ModWorldGen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ public class NTRDealsItems implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.register();
+		ModRecipes.register();
 		ModBlocks.register();
 		ModAttributes.register();
 		ModConfig.register();

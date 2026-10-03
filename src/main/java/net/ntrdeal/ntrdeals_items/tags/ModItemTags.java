@@ -4,12 +4,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
-import net.ntrdeal.realapi.util.RegistryUtil;
+import net.ntrdeal.realapi.util.registry.TagCreator;
 
 public final class ModItemTags {
     private ModItemTags(){}
 
-    private static final RegistryUtil.TagCreator<Item> CREATOR = RegistryUtil.tagCreator(Registries.ITEM, NTRDealsItems::id);
+    private static final TagCreator<Item> CREATOR = TagCreator.of(Registries.ITEM, NTRDealsItems::id);
 
     public static final TagKey<Item> COSMOLITE_ARMOR = CREATOR.create("cosmolite_armor");
     public static final TagKey<Item> LUNARITE_ARMOR = CREATOR.create("lunarite_armor");

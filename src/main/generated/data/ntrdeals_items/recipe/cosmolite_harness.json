@@ -1,0 +1,31 @@
+{
+  "type": "ntrdeals_items:smithing_with_components",
+  "addition-1": "ntrdeals_items:cosmolite_ingot",
+  "addition-2": "ntrdeals_items:cosmolite_ingot",
+  "base": {
+    "fabric:type": "fabric:components",
+    "base": "#minecraft:harnesses",
+    "components": {
+      "!ntrdeals_items:cosmolite": {}
+    }
+  },
+  "components": {
+    "minecraft:attribute_modifiers": [
+      {
+        "type": "minecraft:flying_speed",
+        "amount": 1.0,
+        "id": "ntrdeals_items:cosmolite_harness",
+        "operation": "add_multiplied_total",
+        "slot": "body"
+      },
+      {
+        "type": "minecraft:armor",
+        "amount": 10.0,
+        "id": "ntrdeals_items:cosmolite_harness",
+        "operation": "add_value",
+        "slot": "body"
+      }
+    ],
+    "ntrdeals_items:cosmolite": {}
+  }
+}

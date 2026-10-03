@@ -37,7 +37,7 @@ public class EquipmentLayerRendererMixin {
             int order = nextOrder.get();
 
             submitNodeCollector.order(order).submitModel(
-                    model, state, poseStack, ModRenderTypes.COSMOLITE, lightCoords,
+                    model, state, poseStack, ModRenderTypes.cosmolite(null, false), lightCoords,
                     OverlayTexture.NO_OVERLAY, 0, null, outlineColor
             );
 

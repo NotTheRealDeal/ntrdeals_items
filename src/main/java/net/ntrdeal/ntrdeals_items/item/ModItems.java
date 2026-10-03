@@ -25,42 +25,35 @@ public final class ModItems {
     public static final InfusibleEntry COSMOLITE_INFUSIBLE = new InfusibleEntry(1f, 1f);
 
     public static final Item RAW_LUNARITE = Items.registerItem(ModItemIds.RAW_LUNARITE);
+    public static final Item LUNARITE_INGOT = Items.registerItem(ModItemIds.LUNARITE_INGOT);
 
-    public static final Item RAW_COSMOLITE = Items.registerItem(
-            ModItemIds.RAW_COSMOLITE, properties -> new Item(cosmolite(properties))
-    );
-
-    public static final Item LUNARITE_INGOT = Items.registerItem(
-            ModItemIds.LUNARITE_INGOT, properties -> new Item(cosmolite(properties))
-    );
-    public static final Item COSMOLITE_INGOT = Items.registerItem(
-            ModItemIds.COSMOLITE_INGOT, properties -> new Item(cosmolite(properties))
-    );
+    public static final Item RAW_COSMOLITE = Items.registerItem(ModItemIds.RAW_COSMOLITE, cosmolite(new Item.Properties()));
+    public static final Item COSMOLITE_INGOT = Items.registerItem(ModItemIds.COSMOLITE_INGOT, cosmolite(new Item.Properties()));
 
     public static final Item LUNARITE_HELMET = Items.registerItem(
-            ModItemIds.LUNARITE_HELMET, properties -> new Item(lunariteArmor(properties.humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.HELMET)))
+            ModItemIds.LUNARITE_HELMET, lunariteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.HELMET))
     );
     public static final Item LUNARITE_CHESTPLATE = Items.registerItem(
-            ModItemIds.LUNARITE_CHESTPLATE, properties -> new Item(lunariteArmor(properties.humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.CHESTPLATE)))
+            ModItemIds.LUNARITE_CHESTPLATE, lunariteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.CHESTPLATE))
     );
     public static final Item LUNARITE_LEGGINGS = Items.registerItem(
-            ModItemIds.LUNARITE_LEGGINGS, properties -> new Item(lunariteArmor(properties.humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.LEGGINGS)))
+            ModItemIds.LUNARITE_LEGGINGS, lunariteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.LEGGINGS))
     );
     public static final Item LUNARITE_BOOTS = Items.registerItem(
-            ModItemIds.LUNARITE_BOOTS, properties -> new Item(lunariteArmor(properties.humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.BOOTS)))
+            ModItemIds.LUNARITE_BOOTS, lunariteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.LUNARITE, ArmorType.BOOTS))
     );
 
     public static final Item COSMOLITE_HELMET = Items.registerItem(
-            ModItemIds.COSMOLITE_HELMET, properties -> new Item(cosmoliteArmor(properties.humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.HELMET)))
+            ModItemIds.COSMOLITE_HELMET, cosmoliteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.HELMET))
     );
     public static final Item COSMOLITE_CHESTPLATE = Items.registerItem(
-            ModItemIds.COSMOLITE_CHESTPLATE, properties -> new Item(cosmoliteArmor(properties.humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.CHESTPLATE)))
+            ModItemIds.COSMOLITE_CHESTPLATE, cosmoliteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.CHESTPLATE))
     );
     public static final Item COSMOLITE_LEGGINGS = Items.registerItem(
-            ModItemIds.COSMOLITE_LEGGINGS, properties -> new Item(cosmoliteArmor(properties.humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.LEGGINGS)))
+            ModItemIds.COSMOLITE_LEGGINGS, cosmoliteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.LEGGINGS))
     );
     public static final Item COSMOLITE_BOOTS = Items.registerItem(
-            ModItemIds.COSMOLITE_BOOTS, properties -> new Item(cosmoliteArmor(properties.humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.BOOTS)))
+            ModItemIds.COSMOLITE_BOOTS, cosmoliteArmor(new Item.Properties().humanoidArmor(ModArmorMaterials.COSMOLITE, ArmorType.BOOTS))
     );
 
     public static final Item TRIM_SWAPPER = Items.registerItem(

@@ -9,14 +9,14 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
-import net.ntrdeal.realapi.util.RegistryUtil;
+import net.ntrdeal.realapi.util.registry.ResourceCreator;
 
 import java.util.List;
 
 public final class ModPlacedFeatures {
     private ModPlacedFeatures(){}
 
-    private static final RegistryUtil.ResourceCreator<PlacedFeature> CREATOR = RegistryUtil.resourceCreator(Registries.PLACED_FEATURE, NTRDealsItems::id);
+    private static final ResourceCreator<PlacedFeature> CREATOR = ResourceCreator.of(Registries.PLACED_FEATURE, NTRDealsItems::id);
 
     public static final ResourceKey<PlacedFeature> LUNARITE_GEODE = CREATOR.create("lunarite_geode");
     public static final ResourceKey<PlacedFeature> COSMOLITE_GEODE = CREATOR.create("cosmolite_geode");

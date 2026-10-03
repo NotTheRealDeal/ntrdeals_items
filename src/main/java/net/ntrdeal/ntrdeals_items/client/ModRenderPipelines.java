@@ -1,8 +1,10 @@
 package net.ntrdeal.ntrdeals_items.client;
 
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.renderpearl.api.pipeline.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 
@@ -10,13 +12,43 @@ import net.ntrdeal.ntrdeals_items.NTRDealsItems;
 public final class ModRenderPipelines {
     private ModRenderPipelines(){}
 
-    public static final RenderPipeline COSMOLITE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.END_PORTAL_SNIPPET)
-        .withLocation(NTRDealsItems.id("pipeline/cosmolite"))
-        .withDepthStencilState(new DepthStencilState(CompareOp.EQUAL, false))
-        .withColorTargetState(new ColorTargetState(BlendFunction.LIGHTNING))
-        .withShaderDefine("PORTAL_LAYERS", 16)
-        .withCull(false)
-        .build()
+    public static final RenderPipeline.Snippet COSMOLITE_SNIPPET = RenderPipeline.builder(RenderPipelines.END_PORTAL_SNIPPET)
+            .withVertexShader(NTRDealsItems.id("core/cosmolite"))
+            .withFragmentShader(NTRDealsItems.id("core/cosmolite"))
+            .withDepthStencilState(new DepthStencilState(CompareOp.EQUAL, false))
+            .withColorTargetState(new ColorTargetState(BlendFunction.LIGHTNING))
+            .withShaderDefine("PORTAL_LAYERS", 16)
+            .withCull(false)
+            .buildSnippet();
+
+    public static final RenderPipeline COSMOLITE = RenderPipelines.register(RenderPipeline.builder(COSMOLITE_SNIPPET)
+            .withLocation(NTRDealsItems.id("pipeline/cosmolite"))
+            .withVertexBinding(0, DefaultVertexFormat.POSITION)
+            .build()
+    );
+
+    public static final RenderPipeline FLAT_COSMOLITE = RenderPipelines.register(RenderPipeline.builder(COSMOLITE_SNIPPET)
+            .withLocation(NTRDealsItems.id("pipeline/flat_cosmolite"))
+            .withVertexBinding(0, DefaultVertexFormat.POSITION_TEX)
+            .withShaderDefine("FLAT")
+            .build()
+    );
+
+    public static final RenderPipeline MASKED_COSMOLITE = RenderPipelines.register(RenderPipeline.builder(COSMOLITE_SNIPPET)
+            .withLocation(NTRDealsItems.id("pipeline/masked_cosmolite"))
+            .withVertexBinding(0, DefaultVertexFormat.POSITION)
+            .withBindGroupLayout(BindGroupLayouts.SAMPLER2)
+            .withShaderDefine("MASK")
+            .build()
+    );
+
+    public static final RenderPipeline FLAT_MASKED_COSMOLITE = RenderPipelines.register(RenderPipeline.builder(COSMOLITE_SNIPPET)
+            .withLocation(NTRDealsItems.id("pipeline/flat_masked_cosmolite"))
+            .withVertexBinding(0, DefaultVertexFormat.POSITION_TEX)
+            .withShaderDefine("FLAT")
+            .withBindGroupLayout(BindGroupLayouts.SAMPLER2)
+            .withShaderDefine("MASK")
+            .build()
     );
 
     public static final RenderPipeline ARMOR_TRIM_TRANSPARENT = RenderPipelines.register(

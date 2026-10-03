@@ -21,7 +21,7 @@
 		"client": [
 			"net.ntrdeal.ntrdeals_items.NTRDealsItemsClient"
 		],
-		"fabric-datagen": [
+		"fabric-datagen-disabled": [
 			"net.ntrdeal.ntrdeals_items.NTRDealsItemsDataGenerator"
 		],
 		"cardinal-components": [
