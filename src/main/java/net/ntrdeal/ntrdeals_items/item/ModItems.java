@@ -1,7 +1,6 @@
 package net.ntrdeal.ntrdeals_items.item;
 
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.util.Unit;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
@@ -16,7 +15,6 @@ import net.ntrdeal.ntrdeals_items.item.custom.TrimSwapperItem;
 import net.ntrdeal.ntrdeals_items.item.equipment.ModArmorMaterials;
 import net.ntrdeal.ntrdeals_items.reference.ModBlockItemIds;
 import net.ntrdeal.ntrdeals_items.reference.ModItemIds;
-import net.ntrdeal.realapi.item.component.RealDataComponents;
 
 public final class ModItems {
     private ModItems(){}
@@ -63,7 +61,6 @@ public final class ModItems {
     public static final Item CHORUS_SWORD = Items.registerItem(
             ModItemIds.CHORUS_SWORD, properties -> new ChorusSwordItem(properties
                     .component(ModDataComponents.CHORUS_METER, ChorusMeter.EMPTY)
-                    .component(RealDataComponents.PREVENT_CONSUMPTION, Unit.INSTANCE)
                     .stacksTo(1)
                     .enchantable(ToolMaterial.NETHERITE.enchantmentValue())
                     .food(ChorusMeter.FOOD, ChorusMeter.CONSUMABLE)

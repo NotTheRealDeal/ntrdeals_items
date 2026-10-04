@@ -33,6 +33,7 @@ import net.minecraft.world.level.block.ChorusFlowerBlock;
 import net.ntrdeal.ntrdeals_items.compat.EnchancementCompat;
 import net.ntrdeal.ntrdeals_items.item.ModItems;
 import net.ntrdeal.ntrdeals_items.item.component.ModDataComponents;
+import net.ntrdeal.realapi.item.component.type.ConsumableModifier;
 import net.ntrdeal.realapi.item.component.type.InventoryTicker;
 import net.ntrdeal.realapi.item.component.type.PostHurtListener;
 import org.jspecify.annotations.Nullable;
@@ -40,7 +41,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public record ChorusMeter(int chorus) implements ConsumableListener, PostHurtListener, InventoryTicker, TooltipProvider {
+public record ChorusMeter(int chorus) implements ConsumableListener, PostHurtListener, InventoryTicker, ConsumableModifier, TooltipProvider {
     private static final TextColor COLOR_1 = TextColor.fromRgb(0xf7e9a3), COLOR_2 = TextColor.fromRgb(0x8e678d);
     private static final ConsumeEffect TELEPORT = new TeleportRandomlyConsumeEffect();
     private static final HolderGetter<Block> HOLDER_GETTER = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK);
@@ -107,6 +108,11 @@ public record ChorusMeter(int chorus) implements ConsumableListener, PostHurtLis
         int mendingLevel = EnchancementCompat.mendingLevel(stack, level.registryAccess());
         if (mendingLevel <= 0 || (level.getGameTime() % (200 / mendingLevel)) != 0) return;
         this.add(stack, 1);
+    }
+
+    @Override
+    public boolean decrementsStack(ItemStack stack, LivingEntity entity) {
+        return false;
     }
 
     @Override

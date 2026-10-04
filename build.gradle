@@ -36,13 +36,13 @@ dependencies {
 	compileOnly "moriyashiine.enchancement:enchancement-fabric:${project.compile_enchancement_version}"
 
 	//runtime mods
-//	runtimeOnly "maven.modrinth:mOgUt4GM:${project.modmenu_version}"
-//	runtimeOnly "maven.modrinth:TQTTVgYE:${project.carpet_version}"
-//	runtimeOnly "maven.modrinth:l6YH9Als:${project.spark_version}"
-//	runtimeOnly "maven.modrinth:AANobbMI:${project.sodium_version}"
-//	runtimeOnly "maven.modrinth:u6dRKJwZ:${project.jei_version}"
-//	runtimeOnly "maven.modrinth:9Ya7Yyre:${project.runtime_strawberrylib_version}"
-//	runtimeOnly "maven.modrinth:6hN1V6wJ:${project.runtime_enchancement_version}"
+	runtimeOnly "maven.modrinth:mOgUt4GM:${project.modmenu_version}"
+	runtimeOnly "maven.modrinth:TQTTVgYE:${project.carpet_version}"
+	runtimeOnly "maven.modrinth:l6YH9Als:${project.spark_version}"
+	runtimeOnly "maven.modrinth:AANobbMI:${project.sodium_version}"
+	runtimeOnly "maven.modrinth:u6dRKJwZ:${project.jei_version}"
+	runtimeOnly "maven.modrinth:9Ya7Yyre:${project.runtime_strawberrylib_version}"
+	runtimeOnly "maven.modrinth:6hN1V6wJ:${project.runtime_enchancement_version}"
 }
 
 processResources {
